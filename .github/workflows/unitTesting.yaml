@@ -1,0 +1,44 @@
+name: Run Unit Tests
+
+on: push
+
+env:
+  MONGO_URI: mongodb+srv://supercluster.d83jj.mongodb.net/superData
+  MONGO_USERNAME: superuser
+  MONGO_PASSWORD: SuperPassword
+
+jobs:
+  test:
+    name: Unit testing
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        id: nodejs-unit-testing-step
+        run: npm test
+
+      - name: Archive Test Result
+        if: steps.nodejs-unit-testing-step.outcome=='failure'|| steps.nodejs-unit-testing-step.outcome=='success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Mocha-Test_Result
+          path: test-results.xml
+
+#    code-coverage:
+#     -name:code coverage
+#     -runs-on:ubuntu-latest
