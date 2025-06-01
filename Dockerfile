@@ -8,9 +8,9 @@ RUN npm install
 
 COPY . .
 
-ENV MONGO_URI=uriPlaceholder
-ENV MONGO_USERNAME=usernamePlaceholder
-ENV MONGO_PASSWORD=passwordPlaceholder
+ENV MONGO_URI=mongodb+srv://mariemmostafa:mariemmostafa123@cluster0.wqlzv6i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+ENV MONGO_USERNAME=mariemmostafa
+ENV MONGO_PASSWORD=mariemmostafa123
 
 EXPOSE 3000
 
