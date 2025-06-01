@@ -26,4 +26,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/my-image:run2
+          tags: ${{ secrets.DOCKER_USERNAME }}/solarsystem:run2
